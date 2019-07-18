@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
     var cell = req.body.tel;
     res.render('demo', {
-        title: 'Demo Betsy',
+        title: 'Betsy Demo',
         cellNum: cell
     })
 });
