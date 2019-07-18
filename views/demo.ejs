@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>This is Betsy</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom fonts for this template -->
+    <link href="/javascripts/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="/javascripts/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+          type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="stylesheets/landing-page.min.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+
+<!-- Navigation -->
+<%- include partials/menu.ejs %>
+
+<!-- Masthead -->
+<header class="masthead text-white text-center" style="padding-top:4rem; padding-bottom:4rem">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+                <h1 class="mb"><%= title%></h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="col-md-4 mx-auto">
+    <form>
+        <div id="contact-form" class="form-container" data-form-container>
+            <div class="row">
+                <div class="form-title">
+                    <span>Demo Betsy</span>
+                </div>
+            </div>
+            <div class="input-container">
+                <div class="row">
+					<span class="req-input" >
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Input Your First and Last Name. Example: Jane Smith"> </span>
+						<input type="text" data-min-length="8" placeholder="Full Name">
+					</span>
+                </div>
+                <div class="row">
+					<span class="req-input">
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Please Input Your Email. Example: abc123@email.com"> </span>
+						<input type="email" placeholder="Email">
+					</span>
+                </div>
+                <div class="row">
+					<span class="req-input">
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Please Input Your Phone Number. Format: xxx-xxx-xxxx"> </span>
+						<input type="tel" placeholder="Phone Number" value="<%= cellNum %>">
+					</span>
+                </div>
+                <div class="row submit-row">
+                    <button type="button" class="btn btn-block submit-form">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Footer -->
+<%- include partials/footer.ejs %>
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="/javascripts/jquery/jquery.min.js"></script>
+<script src="/javascripts/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/javascripts/script.js"></script>
+
+</body>
+
+</html>
