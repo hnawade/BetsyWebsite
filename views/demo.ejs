@@ -44,7 +44,7 @@
 </header>
 
 <div class="col-md-4 mx-auto">
-    <form>
+    <form class="demo-form">
         <div id="contact-form" class="form-container" data-form-container>
             <div class="row">
                 <div class="form-title">
@@ -67,11 +67,11 @@
                 <div class="row">
 					<span class="req-input">
 						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Please Input Your Phone Number. Format: xxx-xxx-xxxx"> </span>
-						<input type="tel" placeholder="Phone Number" value="<%= cellNum %>">
+						<input class="bfh-phone" type="tel" placeholder="Phone Number" value="<%= cellNum %>" data-format="+1 (ddd) ddd-dddd" pattern="^\d{3}-\d{3}-\d{4}$">
 					</span>
                 </div>
                 <div class="row submit-row">
-                    <button type="button" class="btn btn-block submit-form">Submit</button>
+                    <button type="button submit" class="btn btn-block submit-form">Submit</button>
                 </div>
             </div>
         </div>
@@ -86,6 +86,17 @@
 <script src="/javascripts/jquery/jquery.min.js"></script>
 <script src="/javascripts/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/javascripts/script.js"></script>
+
+<script>
+    $('.demo-form').on('submit', function () {
+        alert('Form submitted!');
+        var params = {
+            Message: 'TEXT_MESSAGE', /* required */
+            PhoneNumber: '+10016096471266',
+        };
+        return false;
+    });
+</script>
 
 </body>
 
