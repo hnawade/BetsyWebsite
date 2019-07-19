@@ -140,7 +140,7 @@ function validate(target){
 function phonenumber(inputtxt) {
     if(typeof inputtxt == "undefined")
         return;
-    var phoneno = /^\d{3}-\d{3}-\d{4}$/;
+    var phoneno = /^\d{3}-?\d{3}-?\d{4}$/;
     if((inputtxt.match(phoneno))) {
         return true;
     }

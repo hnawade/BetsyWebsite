@@ -37,14 +37,14 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-9 mx-auto">
-                <h1 class="mb"><%= title%></h1>
+                <h1 class="mb"><%= title %></h1>
             </div>
         </div>
     </div>
 </header>
 
 <div class="col-md-4 mx-auto">
-    <form class="demo-form">
+    <form id="demo-form" action="/validate" method="post">
         <div id="contact-form" class="form-container" data-form-container>
             <div class="row">
                 <div class="form-title">
@@ -53,21 +53,25 @@
             </div>
             <div class="input-container">
                 <div class="row">
-					<span class="req-input" >
-						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Input Your First and Last Name. Example: Jane Smith"> </span>
-						<input type="text" data-min-length="8" placeholder="Full Name">
+					<span class="req-input">
+						<span class="input-status" data-toggle="tooltip" data-placement="top"
+                              title="Input Your First and Last Name. Example: Jane Smith"> </span>
+						<input name="name" type="text" placeholder="Full Name" value="<%= name %>" <% if (code != null) { %> readonly <% } %>>
 					</span>
                 </div>
                 <div class="row">
 					<span class="req-input">
-						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Please Input Your Email. Example: abc123@email.com"> </span>
-						<input type="email" placeholder="Email">
+						<span class="input-status" data-toggle="tooltip" data-placement="top"
+                              title="Please Input Your Email. Example: abc123@email.com"> </span>
+						<input name="email" type="email" placeholder="Email" value="<%= email %>" <% if (code != null) { %> readonly <% } %>>
 					</span>
                 </div>
                 <div class="row">
 					<span class="req-input">
-						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Please Input Your Phone Number. Format: xxx-xxx-xxxx"> </span>
-						<input class="bfh-phone" type="tel" placeholder="Phone Number" value="<%= cellNum %>" data-format="+1 (ddd) ddd-dddd" pattern="^\d{3}-\d{3}-\d{4}$">
+						<span class="input-status" data-toggle="tooltip" data-placement="top"
+                              title="Please Input Your Phone Number. Format: xxx-xxx-xxxx"> </span>
+						<input class="bfh-phone" id="tel" name="cell" type="tel" placeholder="Phone Number" value="<%= cellNum %>"
+                               data-format="+1 (ddd) ddd-dddd" pattern="^\d{3}-?\d{3}-?\d{4}$" <% if (code != null) { %> readonly <% } %>>
 					</span>
                 </div>
                 <div class="row submit-row">
@@ -76,6 +80,29 @@
             </div>
         </div>
     </form>
+    <% if (code != null) {%>
+    <form id="validation-form">
+        <div id="contact-form" class="form-container" data-form-container>
+            <div class="row">
+                <div class="form-title">
+                    <span>Confirm Phone Number</span>
+                </div>
+            </div>
+            <div class="input-container">
+                <div class="row">
+					<span class="req-input">
+						<span class="input-status" data-toggle="tooltip" data-placement="top"
+                              title="Enter the verification code you received on your phone number"> </span>
+						<input id="userCode" type="text" data-length="4" placeholder="XXXX">
+					</span>
+                </div>
+                <div class="row submit-row">
+                    <button type="button submit" class="btn btn-block submit-form">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <% } %>
 </div>
 
 <!-- Footer -->
@@ -88,15 +115,82 @@
 <script src="/javascripts/script.js"></script>
 
 <script>
-    $('.demo-form').on('submit', function () {
-        alert('Form submitted!');
+    $("#validation-form").submit(function (e) {
+        e.preventDefault();
+        let code = "<%- code %>";
+        let userCode = document.getElementById("userCode").value;
+
+        if (code == userCode) {
+            alert("Success: Your demo will start shortly.")
+        }
+        else {
+            alert("Failure: Could not verify phone number.")
+        }
+
+        /**
+
+        var AWS = "";
+
+        console.log("Generating code");
+        var code = Math.floor(Math.random() * 9000 + 1000);
+        console.log("Code = " + code);
+        console.log('+1001' + document.getElementById("tel").value.replace(/\D/g, ""));
+
         var params = {
-            Message: 'TEXT_MESSAGE', /* required */
-            PhoneNumber: '+10016096471266',
+            Message: 'Your verification code is ' + code, /* required
+            PhoneNumber: '+1001' + document.getElementById("tel").value.replace(/\D/g, "")
         };
-        return false;
-    });
-</script>
+
+        var publishTextPromise = new AWS.SNS({apiVersion: '2010-03-31'}).publish(params).promise();
+
+        publishTextPromise.then(
+            function (data) {
+                console.log("MessageID is " + data.MessageId);
+            }).catch(
+            function (err) {
+                console.error(err, err.stack);
+            });
+        var userCode = prompt("Please enter the verification code", "");
+
+        if (userCode == code) {
+            alert("Success");
+        } else {
+            alert("Fail!");
+        }
+        return false;*/
+    })
+    // $('.demo-form').on('submit', function () {
+    //     //alert("Success");
+    //     console.log("Generating code");
+    //     var code = Math.floor(Math.random() * 9000 + 1000);
+    //     console.log("Code = " + code);
+    //     console.log('+1001' + document.getElementById("tel").value.replace(/\D/g, ""));
+    //
+    //     var params = {
+    //         Message: 'Your verification code is ' + code, /* required */
+    //         PhoneNumber: '+1001' + document.getElementById("tel").value.replace(/\D/g, "")
+    //     };
+    //
+    //     var publishTextPromise = new AWS.SNS({apiVersion: '2010-03-31'}).publish(params).promise();
+    //
+    //     publishTextPromise.then(
+    //         function (data) {
+    //             console.log("MessageID is " + data.MessageId);
+    //         }).catch(
+    //         function (err) {
+    //             console.error(err, err.stack);
+    //         });
+    //     var userCode = prompt("Please enter the verification code", "");
+    //
+    //     if (userCode == code) {
+    //         alert("Success");
+    //     }
+    //     else {
+    //         alert("Fail!");
+    //     }
+    //     return false;
+    // });
+</script>-->
 
 </body>
 
