@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+const mysql = require('mysql');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
@@ -10,27 +11,24 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-var AWS = require('aws-sdk');
-// Set region
-AWS.config.update({region: 'us-west-2'});
 
-// Create publish parameters
-var params = {
-    Message: 'TEXT_MESSAGE', /* required */
-    PhoneNumber: '+10016096471266',
-};
 
-// // Create promise and SNS service object
-// var publishTextPromise = new AWS.SNS({apiVersion: '2010-03-31'}).publish(params).promise();
-//
-// // Handle promise's fulfilled/rejected states
-// publishTextPromise.then(
-//     function (data) {
-//         console.log("MessageID is " + data.MessageId);
-//     }).catch(
-//     function (err) {
-//         console.error(err, err.stack);
-//     });
+const db = mysql.createConnection({
+    host: 'betsy-users.ca0jqdgq1i14.us-west-2.rds.amazonaws.com',
+    user: 'admin',
+    password: 'd3QCdpmM',
+    database: 'betsy_users',
+    port: 3306
+});
+
+db.connect((err) => {
+    if(err) {
+        throw err;
+    }
+    console.log('Connected to database');
+});
+
+global.db = db;
 
 
 // view engine setup

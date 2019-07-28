@@ -6,7 +6,8 @@
             This is Betsy Inc.
         </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -28,7 +29,31 @@
                     </a>
                 </li>
             </ul>
-            <a class="btn btn-primary my-2 my-lg-0" href="#">Sign In</a>
+
+            <ul class="nav navbar-nav navbar-right">
+                <% if (user == null) { %>
+                    <li>
+                        <a href="/" title="Sign In">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            Sign in
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/" title="Register">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            Register
+                        </a>
+                    </li>
+                <% } else { %>
+                    <li>
+                        <a href="/" title="Log out">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            Log out
+                        </a>
+                    </li>
+                <% } %>
+            </ul>
+
         </div>
 
 
