@@ -97,15 +97,23 @@ function validate(target){
         if($(this).is(":visible") == false)
             return true; //skip iteration
 
+
         switch(type) {
             case "confirm-password":
                 var initialPassword = $(".input-password input").val();
                 error += setRow(initialPassword  == val && initialPassword.length > 0, Parent);
-                break;
             case "password":
+                if ($(this).attr("id") == "conf-pass") {
+                    var minLength = $(this).attr("minlength");
+                    if(typeof minLength == "undefined")
+                        minLength = 0;
+                    var initialPassword = $("#pass").val();
+                    error += setRow(minLength<= val.length && initialPassword  == val && initialPassword.length > 0, Parent);
+                    break;
+                }
             case "textarea":
             case "text":
-                var minLength = $(this).data("min-length");
+                var minLength = $(this).attr("minlength");
                 if(typeof minLength == "undefined")
                     minLength = 0;
                 error += setRow(val.length >= minLength, Parent);

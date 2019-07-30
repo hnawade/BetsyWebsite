@@ -8,8 +8,8 @@ router.get('/demo', function (req, res, next) {
         name: '',
         email: '',
         cellNum: '',
-        code: null
-
+        code: null,
+        user: req.session.user
     })
 });
 
@@ -19,7 +19,8 @@ router.post('/demo', function (req, res, next) {
         name: '',
         email: '',
         cellNum: req.body.tel,
-        code: null
+        code: null,
+        user: req.session.user
     })
 });
 
@@ -53,7 +54,8 @@ router.post('/validate', function(req, res, next) {
         name: req.body.name,
         email: req.body.email,
         cellNum: req.body.cell,
-        code: code
+        code: code,
+        user: req.session.user
     })
 })
 

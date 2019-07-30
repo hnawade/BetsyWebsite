@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>This is Betsy</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom fonts for this template -->
+    <link href="/javascripts/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="/javascripts/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+          type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="stylesheets/landing-page.min.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+
+<!-- Navigation -->
+<%- include partials/menu.ejs %>
+
+<!-- Masthead -->
+<header class="masthead text-white text-center" style="padding-top:4rem; padding-bottom:4rem;">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+                <h1 class="mb">Register</h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<% if (message) { %>
+    <p style="color:red">
+        <%= message %>
+    </p>
+<% } %>
+
+<div class="col-md-4 mx-auto">
+
+    <form id="demo-form" action="/register" method="post">
+        <div id="contact-form" class="form-container" data-form-container>
+            <div class="row">
+                <div class="form-title">
+                    <span>Register</span>
+                </div>
+            </div>
+
+            <% if (message) { %>
+                <span style="color:red">
+                <%= message %>
+            </span>
+            <% } %>
+
+            <div class="input-container">
+                <div class="row">
+					<span class="req-input">
+						<span class="input-status" data-toggle="tooltip" data-placement="top"
+                              title="Please input the email to be associated with your betsy account. Example: abc123@email.com"> </span>
+						<input name="email" type="email" placeholder="Email">
+					</span>
+                </div>
+                <div class="row">
+					<span class="req-input">
+						<span class="input-status" data-toggle="tooltip" data-placement="top"
+                              title="Please input the password you wish to create for this account. Must be at least eight digits."> </span>
+						<input id="pass" name="password" minlength="8" type="password" placeholder="********">
+					</span>
+                </div>
+                <div class="row">
+					<span class="req-input">
+						<span class="input-status" data-toggle="tooltip" data-placement="top"
+                              title="Please retype the password"> </span>
+						<input id="conf-pass" name="confirm-password" type="password" placeholder="********">
+					</span>
+                </div>
+                <div class="row">
+					<span class="req-input">
+						<span class="input-status" data-toggle="tooltip" data-placement="top"
+                              title="Please input the name of the organization you represent."> </span>
+						<input id="org" name="organization" minlength="1" type="text" placeholder="Organization" required>
+					</span>
+                </div>
+                <div class="row">
+					<span class="req-input">
+						<span class="input-status" data-toggle="tooltip" data-placement="top"
+                              title="Please Input Your Phone Number. Format: xxx-xxx-xxxx"> </span>
+						<input class="bfh-phone" id="tel" name="phone" type="tel" placeholder="Phone Number"
+                               data-format="+1 (ddd) ddd-dddd" pattern="^\d{3}-?\d{3}-?\d{4}$">
+					</span>
+                </div>
+                <div class="row submit-row">
+                    <button type="button submit" class="btn btn-block submit-form">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<%- include partials/footer.ejs %>
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="/javascripts/jquery/jquery.min.js"></script>
+<script src="/javascripts/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/javascripts/script.js"></script>
+
+</body>
+
+</html>

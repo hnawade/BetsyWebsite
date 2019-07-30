@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark static-top">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark static-top fixed-top scrolling-navbar">
     <div class="container">
         <a class="navbar-brand" href="/">
             <img src="/images/betsy_logo_white.png" width="30" height="30" class="d-inline-block align-top" alt="">
@@ -30,26 +30,27 @@
                 </li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="navbar-nav ml-auto nav-flex-icons">
                 <% if (user == null) { %>
-                    <li>
-                        <a href="/" title="Sign In">
-                            <span class="glyphicon glyphicon-plus"></span>
-                            Sign in
-                        </a>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-success" type="button" onclick="location.href='/signin'">Sign In</button>
                     </li>
-                    <li>
-                        <a href="/" title="Register">
-                            <span class="glyphicon glyphicon-plus"></span>
-                            Register
-                        </a>
+                    <li class="nav-item">
+                        <button onclick="location.href='/register'" class="btn btn-outline-success" type="button" >Register</>
                     </li>
                 <% } else { %>
-                    <li>
-                        <a href="/" title="Log out">
-                            <span class="glyphicon glyphicon-plus"></span>
-                            Log out
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i>
                         </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                             aria-labelledby="navbarDropdownMenuLink-333">
+                            <a class="dropdown-item" href="#">Email: <%= user.email %></a>
+                            <a class="dropdown-item" href="#">Organization: <%= user.organization %></a>
+                            <a class="dropdown-item" href="#">Phone: <%= user.phone %></a>
+                            <a class="dropdown-item" href="/logout">Logout</a>
+                        </div>
                     </li>
                 <% } %>
             </ul>
