@@ -35,13 +35,15 @@
                     <li class="nav-item">
                         <button class="btn btn-outline-success" type="button" onclick="location.href='/signin'">Sign In</button>
                     </li>
+                    </br>
                     <li class="nav-item">
                         <button onclick="location.href='/register'" class="btn btn-outline-success" type="button" >Register</>
                     </li>
                 <% } else { %>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown btn">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
+                            Profile&nbsp;
                             <i class="fas fa-user"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-default"
@@ -49,6 +51,7 @@
                             <a class="dropdown-item" href="#">Email: <%= user.email %></a>
                             <a class="dropdown-item" href="#">Organization: <%= user.organization %></a>
                             <a class="dropdown-item" href="#">Phone: <%= user.phone %></a>
+                            <a class="dropdown-item" href="/users/screens">Screens</a>
                             <a class="dropdown-item" href="/logout">Logout</a>
                         </div>
                     </li>

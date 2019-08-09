@@ -122,6 +122,9 @@
 
         if (code == userCode) {
             alert("Success: Your demo will start shortly.")
+            let data = {cell: "<%= cellNum%>"};
+
+            $.post("/start_demo",data);
         }
         else {
             alert("Failure: Could not verify phone number.")
