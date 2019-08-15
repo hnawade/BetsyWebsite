@@ -56,6 +56,7 @@ var db_config = {
 
 var db;
 
+
 function handleDisconnect() {
     db = mysql.createConnection(db_config); // Recreate the connection, since
                                                     // the old one cannot be reused.
@@ -77,6 +78,8 @@ function handleDisconnect() {
             throw err;                                  // server variable configures this)
         }
     });
+
+    global.db = db;
 }
 
 handleDisconnect();
@@ -97,7 +100,6 @@ handleDisconnect();
 // });
 
 global.pool = pool
-global.db = db;
 global.demoNumber = "973-321-3992"
 
 
