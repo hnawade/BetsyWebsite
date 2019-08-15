@@ -18,6 +18,7 @@ var app = express();
 var indexRouter = require('./routes/index');
 var demoRouter = require('./routes/demo');
 var usersRouter = require('./routes/screens');
+var projectsRouter = require('./routes/projects');
 
 
 var BetterMemoryStore = require('session-memory-store')(sess);
@@ -37,14 +38,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-var pool = mysql.createPool({
-    connectionLimit: 10,
-    host: 'betsy-users.ca0jqdgq1i14.us-west-2.rds.amazonaws.com',
-    user: 'admin',
-    password: 'd3QCdpmM',
-    database: 'betsy_users',
-    port: 3306
-})
+// var pool = mysql.createPool({
+//     connectionLimit: 10,
+//     host: 'betsy-users.ca0jqdgq1i14.us-west-2.rds.amazonaws.com',
+//     user: 'admin',
+//     password: 'd3QCdpmM',
+//     database: 'betsy_users',
+//     port: 3306
+// })
 
 var db_config = {
     host: 'betsy-users.ca0jqdgq1i14.us-west-2.rds.amazonaws.com',
@@ -99,7 +100,7 @@ handleDisconnect();
 //     console.log('Connected to database');
 // });
 
-global.pool = pool
+// global.pool = pool
 global.demoNumber = "973-321-3992"
 
 
@@ -211,6 +212,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/', demoRouter);
 app.use('/users', usersRouter);
+app.use('/projects', projectsRouter);
 
 
 app.get('/signin', function (req, res) {
